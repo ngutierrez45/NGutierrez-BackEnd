@@ -7,7 +7,7 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 
 app.use('/', require('./routes/root'))
 
-app.get("/api", (req, res) => {
+app.get("https://ngutierrez-backend.onrender.com/api", (req, res) => {
   res.json({ message: "Hello World!" });
 });
 
