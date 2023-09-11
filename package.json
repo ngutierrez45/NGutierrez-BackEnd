@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "build": "cd my-react-app && npm install && npm run build",
     "dev": "nodemon server"
   },
   "keywords": [],
@@ -15,5 +16,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "your-node-version"
   }
 }
