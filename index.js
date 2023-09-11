@@ -8,7 +8,7 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/', require('./routes/root'))
 
 app.get("/api", (req, res) => {
-  res.json({ message: "Hello World!" });
+  res.json({ message: "Hello Stinky!" });
 });
 
 app.use('/', express.static(path.join(__dirname, '/public','index.html')))
