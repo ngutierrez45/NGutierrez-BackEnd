@@ -11,6 +11,8 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello World!" });
 });
 
+app.use('/', express.static(path.join(__dirname, '/public','index.html')))
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
