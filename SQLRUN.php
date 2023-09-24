@@ -1,6 +1,15 @@
 <?php
+// Allow requests from any origin
 header("Access-Control-Allow-Origin: *");
+
+// Allow specific HTTP methods (e.g., GET)
+header("Access-Control-Allow-Methods: GET");
+
+// Allow specific HTTP headers in requests
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+// Set the content type header to JSON
+header('Content-Type: application/json');
 // Makes DB connection
 $servername = "sql1.njit.edu";
 $username = "nag45";
