@@ -1,3 +1,5 @@
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 <?php
 // Makes DB connection
 $servername = "sql1.njit.edu";
