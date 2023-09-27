@@ -13,7 +13,7 @@ header('Content-Type: application/json');
 //Makes DB connection
 $servername = "sql1.njit.edu";
 $username = "nag45";
-$password = "\$PissyGroot121";
+$password = "root";
 $dbname = "nag45";
 $connect = mysqli_connect($servername,$username,$password,$dbname);
 if (mysqli_connect_errno())
