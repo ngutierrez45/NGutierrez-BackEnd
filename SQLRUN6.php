@@ -25,6 +25,7 @@ else
  {
 $type = $_GET["name"];
 $desc = $_GET["desc"];
+$ident = $_GET["id"];
 
 if($type=="rent"){
 
@@ -33,9 +34,34 @@ $result = mysqli_query($connect, $sql);
 
 if(mysqli_num_rows($result) > 0){
 
-//Run SQL to update movie to rented
-$response = [true, $sql];
+$sql = "SELECT email FROM customer WHERE customer_id = '" . $ident . "'";
+$result = mysqli_query($connect, $sql);
 
+if(mysqli_num_rows($result) > 0){
+
+$sql = "INSERT INTO rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
+SELECT
+  COALESCE(MAX(rental_id), 0) + 1,
+  NOW(),
+  i.inventory_id,
+  c.customer_id,
+  NULL,
+  1, 
+  NOW()
+FROM
+  customer AS c
+  INNER JOIN inventory AS i ON i.film_id = (
+    SELECT film_id
+    FROM film
+    WHERE description = '" . $desc . "' 
+    LIMIT 1
+  )
+WHERE
+  c.customer_id = '" . $ident . "'";
+$response = [true, $sql];
+}else{
+    $response = [false, $sql];
+}
 }else{
 
     $response = [false,  $sql];
