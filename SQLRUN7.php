@@ -28,7 +28,7 @@ $mail = $_GET["email"];
 
 if($type=="find"){
 
-$sql = "SELECT customer_id, first_name, last_name, address_id, create_date, last_update FROM customer WHERE email = '" . $mail . "'";
+$sql = "SELECT customer_id, first_name, last_name, address_id, create_date, last_update FROM customer WHERE email = '" . $mail . "' LIMIT 25";
 $result = mysqli_query($connect, $sql);
 
 if(mysqli_num_rows($result) > 0){
@@ -46,7 +46,17 @@ $content[] = array(
 "update" => $row['last_update']
 );
 
-$response = [true, $content, $sql];
+$sql = "SELECT film.title FROM customer JOIN rental ON customer.customer_id = rental.customer_id JOIN inventory ON rental.inventory_id = inventory.inventory_id JOIN film ON inventory.film_id = film.film_id WHERE customer.email = '" . $mail . "'";
+
+$result = mysqli_query($connect, $sql);
+
+$content2 = array();
+
+while($row=mysqli_fetch_assoc($result)){
+  $content2[] = $row['title'];
+}
+
+$response = [true, $content, $content2, $sql];
 
 }else{
 
