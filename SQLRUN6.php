@@ -39,15 +39,16 @@ $result = mysqli_query($connect, $sql);
 
 if(mysqli_num_rows($result) > 0){
 
+$time = date("Y-m-d H:i:s");
 $sql = "INSERT INTO rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update)
 SELECT
   COALESCE(MAX(rental_id), 0) + 1,
-  NOW(),
+  $time,
   i.inventory_id,
   c.customer_id,
   NULL,
   1, 
-  NOW()
+  $time
 FROM
   customer AS c
   INNER JOIN inventory AS i ON i.film_id = (
